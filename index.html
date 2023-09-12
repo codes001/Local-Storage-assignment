@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- TAILWIND CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- REMIX ICON CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+
+
+
+    <title>Javascript Form Assignment</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .required {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            width: max-content;
+            background-color: red;
+            font-weight: bold;
+            transition: .5s ease-in-out;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="h-screen flex bg-[#333;] justify-center items-center ">
+        <form class="flex flex-col gap-4 w-[500px] bg-gray-200 relative rounded-md shadow-lg py-12 px-5 bg-none">
+            <div class="required absolute py-1 px-3 rounded hidden">Please fill in all details</div>
+            <input type="text" id="username" placeholder="Enter your name"
+                class="p-3 rounded-md bg-transparent border border-[#ccc;] focus:outline-none">
+            <input type="email" id="email" placeholder="Enter your email"
+                class="p-3 rounded-md bg-transparent border border-[#ccc;] focus:outline-none">
+            <input type="number" id="telNum" placeholder="Enter your phone number"
+                class="p-3 rounded-md bg-transparent border border-[#ccc;] focus:outline-none">
+            <input placeholder="Date of Birth" type="text" onfocus="(this.type = 'date')" id="dob"
+                class="p-3 rounded-md bg-transparent border border-[#ccc;] focus:outline-none">
+            <input type="submit" id="submitBtn" value="SUBMIT"
+                class="w-full bg-[#ccc;] py-4 cursor-pointer font-bold text-[#333;] hover:bg-[#aaa;]">
+        </form>
+    </div>
+
+    <script>
+        //Bring in Elements from the DOM
+        const username = document.getElementById('username');
+        const email = document.getElementById('email');
+        const telNum = document.getElementById('telNum');
+        const dob = document.getElementById('dob');
+        const submitBtn = document.getElementById('submitBtn');
+        const requiredPrompt = document.querySelector('.required');
+
+        // Add eventlistener to the form
+        submitBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const data = {
+                username: username.value,
+                email: email.value,
+                telNum: telNum.value,
+                dob: dob.value,
+                
+            }
+
+            localStorage.setItem("user", JSON.stringify(data))
+            // Redirect to another page
+            window.location.assign('preview.html')
+
+            // Validated input
+            if (username.value === '' || email.value ==='' || telNum.value==='') {
+                requiredPrompt.style.display= 'block';
+            } else {
+                
+                requiredPrompt.style.display= 'none';
+            }
+        })
+        
+    </script>
+</body>
+
+</html>

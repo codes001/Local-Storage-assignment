@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Form preview</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+      </style>
+</head>
+
+<body>
+    <div class="h-screen flex flex-col bg-[#333;] text-white justify-center items-center ">
+      
+        <h1 class="preview-heading text-3xl font-bold mb-5">User Information</h1>
+        <div class="preview">
+           
+            <p><b>User Name</b> :<span id="username"></span></p>
+            <p><b>Email</b>:<span id="email"></span></p>
+            <p><b>DOB</b> :<span id="dob"></span></p>
+            
+            <p class="mb-7"><b>Phone Number :</b><span id="telNum"></span></p>
+           
+            <a href="index.html" class="bg-[#ccc;] py-4 px-5 cursor-pointer font-bold text-[#333;] mt-7 hover:bg-[#aaa;]">Back to form</a>
+        </div>
+    </div>
+
+    <script>
+        const username = document.getElementById('username');
+        const email = document.getElementById('email');
+        const telNum = document.getElementById('telNum');
+        const dob = document.getElementById('dob');
+
+
+        // get data from local storage
+        document.addEventListener('DOMContentLoaded', () => {
+            const data = JSON.parse(localStorage.getItem('user'))
+            username.innerText = data.username;
+
+            dob.innerText = data.dob;
+            email.innerText = data.email;
+            telNum.innerText = data.telNum;
+
+
+        })
+    </script>
+</body>
+
+</html>
