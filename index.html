@@ -71,15 +71,18 @@
             }
 
             localStorage.setItem("user", JSON.stringify(data))
-            // Redirect to another page
-            window.location.assign('preview.html')
+          
 
             // Validated input
             if (username.value === '' || email.value ==='' || telNum.value==='') {
                 requiredPrompt.style.display= 'block';
+                return false;
             } else {
                 
                 requiredPrompt.style.display= 'none';
+                
+                // Redirect to another page
+                window.location.assign('preview.html')
             }
         })
         
